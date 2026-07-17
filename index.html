@@ -582,7 +582,10 @@
   function getTargetDate(){
     const now = new Date();
     let target = new Date(now.getFullYear(), 6, 18, 0,0,0);
-    if(target < now){ target = new Date(now.getFullYear()+1, 6, 18, 0,0,0); }
+    // bandingkan tanggal saja (tanpa jam), supaya kalau HARI INI pas 18 Juli,
+    // target tidak ikut lompat ke tahun depan hanya karena jam sekarang sudah lewat 00:00
+    const todayDateOnly = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    if(target < todayDateOnly){ target = new Date(now.getFullYear()+1, 6, 18, 0,0,0); }
     return target;
   }
 
@@ -823,4 +826,4 @@
 </script>
 
 </body>
-</html>
+    </html>
